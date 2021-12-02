@@ -21,7 +21,8 @@ const createWindow = () => {
         }
     });
 
-    mainWindow.loadFile(path.resolve(__dirname, './build/index.html'))
+    // mainWindow.loadFile(path.resolve(__dirname, './build/index.html'))
+    mainWindow.loadURL('http://127.0.0.1:3000/')
 
     globalShortcut.register('Shift+CommandOrControl+I', () => {
         mainWindow.webContents.openDevTools();

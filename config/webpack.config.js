@@ -1,5 +1,6 @@
 'use strict';
 
+console.log('--------')
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -19,6 +20,8 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const ESLintPlugin = require('eslint-webpack-plugin');
+
+
 const paths = require('./paths');
 const modules = require('./modules');
 const getClientEnvironment = require('./env');
@@ -157,6 +160,9 @@ module.exports = function (webpackEnv) {
     }
     return loaders;
   };
+
+
+  console.log(paths.appIndexJs)
 
   return {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',

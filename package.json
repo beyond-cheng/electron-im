@@ -45,7 +45,8 @@
           "entitlements": "public/entitlements.plist",
           "entitlements-inherit": "public/entitlements.plist",
           "signature-flags": "library"
-        }
+        },
+        "icon": "public/logo_128.icns"
       },
       "makers": [
         {
