@@ -1,5 +1,6 @@
 import React from "react";
-import Game from "./chat";
+import Game from "./js/chat";
+import Main from './main/index'
 
 import {
   BrowserRouter as Router,
@@ -17,56 +18,67 @@ import {
 // making sure things like the back button and bookmarks
 // work properly.
 
-export default function BasicExample() {
-  return (
-    <Router>
+
+class BasicExample extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  logout() {
+    
+    window.NativeAPI.logout();
+    
+  }
+
+  render() {
+    return (
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/">Chat</Link>
+              </li>
+              <li>
+                <Link to="/main">Main</Link>
+              </li>
+              <li>
+                <Link to="/quit">quit</Link>
+              </li>
+            </ul>
+            <div>
+              <a onClick={this.logout.bind(this)}>logout</a>
+            </div>
+
+            <hr />
+
+            {/*
+              A <Switch> looks through all its children <Route>
+              elements and renders the first one whose path
+              matches the current URL. Use a <Switch> any time
+              you have multiple routes, but you want only one
+              of them to render at a time
+            */}
+            <Routes>
+              <Route exact path="/" element={<Game />} />
+              <Route path="/main" element={<Main />} />
+              <Route path="/quit" element={<Quit />}></Route>
+            </Routes>
+          </div>
+        </Router>
+        );
+   }
+}
+
+
+class Quit extends React.Component {
+  
+  render() {
+    return (
       <div>
-        <ul>
-          <li>
-            <Link to="/">Chat</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </ul>
-
-        <hr />
-
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
-        <Routes>
-          <Route exact path="/" element={<Game />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/dashboard" element={<Dashboard />}></Route>
-        </Routes>
+        <h2>Quit</h2>
       </div>
-    </Router>
-  );
+    );
+  }
 }
 
-// You can think of these components as "pages"
-// in your app.
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
-  );
-}
+export default BasicExample;
